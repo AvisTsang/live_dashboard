@@ -7,5 +7,13 @@
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#1E2022",
-  "theme_color": "#1E2022"
+  "theme_color": "#1E2022",
+  
+  "icons":[
+    {
+      "src":"dark_mode.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    }
+  ]
 }
