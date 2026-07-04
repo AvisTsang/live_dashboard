@@ -23,9 +23,12 @@ function checkOrientation(){
 
         document.body.insertAdjacentHTML(
             "beforeend",
-            '<div id="rotate">Please rotate device</div>'
+            '<h1 id="rotate">Please rotate device</h1>'
         );
 
+    }
+    else{
+        document.querySelector(".container").style.display = "block";
     }
 }
 
