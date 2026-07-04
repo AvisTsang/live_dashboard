@@ -28,7 +28,7 @@ function checkOrientation(){
 
     }
     else{
-        document.querySelector(".container").style.display = "block";
+        document.querySelector(".container").style.display = "flex";
     }
 }
 
