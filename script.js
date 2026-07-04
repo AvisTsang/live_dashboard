@@ -15,6 +15,21 @@ const fare_map = {
 const MAX_SIZE  = 2 ;
 let current_idx = 0 ;
 
+function checkOrientation(){
+
+    if(window.innerHeight > window.innerWidth){
+
+        document.querySelector(".container").style.display = "none";
+
+        document.body.insertAdjacentHTML(
+            "beforeend",
+            '<div id="rotate">Please rotate device</div>'
+        );
+
+    }
+}
+
+
 
 // const curr = new Date();
 
@@ -34,11 +49,11 @@ async function refresh_time(){
     const mins = curr.getMinutes().toString().padStart(2,0);
     const sec = curr.getSeconds().toString().padStart(2,0);
 
-    console.log(`${hr}:${mins}:${sec}`);
-    console.log(curr.getDay());
-    console.log(curr.getDate());
-    console.log(curr.getMonth()+1);
-    console.log(curr.getFullYear());
+    // console.log(`${hr}:${mins}:${sec}`);
+    // console.log(curr.getDay());
+    // console.log(curr.getDate());
+    // console.log(curr.getMonth()+1);
+    // console.log(curr.getFullYear());
 
     const weekdays = [             
                     "星期日",
@@ -86,7 +101,7 @@ async function refresh_bus(){
         const route = result.route;
         const data = result.data;
 
-        console.log(data);
+        // console.log(data);
 
         const card = document.createElement("div");
         card.classList.add("bus_card");
@@ -153,13 +168,13 @@ async function refresh_weather(){
     const response = await fetch(url);
     
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     
     const humidity = data.main.humidity.toFixed(1);
     let temp = data.main.temp.toFixed(1);
     const icon = data.weather[0].icon;
     const desc = data.weather[0].description;
-    console.log(desc);
+    // console.log(desc);
     
 
     const icon_url =`https://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -186,9 +201,22 @@ async function refresh_weather(){
 
 }
 
+checkOrientation();
 refresh_time();
 refresh_bus();
 refresh_weather();
 setInterval(refresh_bus , 10000);
 setInterval(refresh_time , 1000);
 setInterval(refresh_weather, 300000);
+
+
+
+if ("serviceWorker" in navigator){
+
+    navigator.serviceWorker
+        .register("./service-worker.js")
+        .then(() => {
+            console.log("SW Ready");
+        });
+
+}

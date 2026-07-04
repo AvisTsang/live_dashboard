@@ -1,21 +1,11 @@
 {
-  "name": "Real Time Bus Dashboard",
-  "short_name": "Bus ETA",
+  "name": "Real-Time Bus Information Dashboard",
+  "short_name": "Bus Dashboard",
+  "description": "Real-time KMB ETA, Weather and Clock Dashboard",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "landscape",
   "background_color": "#1E2022",
-  "theme_color": "#1E2022",
-  "orientation": "portrait",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "theme_color": "#1E2022"
 }
