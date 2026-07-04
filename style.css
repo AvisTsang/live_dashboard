@@ -46,7 +46,7 @@
 }
 
 body{
-    padding : 20px 10px 20px 10px; 
+    padding : 10px 10px 20px 10px; 
     background-color:  var(--color-background);
     width : 100vw;
     height : 100vh;
@@ -79,11 +79,10 @@ h1{
 
     #rotate{
         
-display:flex;
+        display:flex;
 
         width:100vw;
         height:100vh;
-
         justify-content:center;
         align-items:center;
 
@@ -97,11 +96,12 @@ display:flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    gap : 10px;
 }
 
 .container .heading {
-    margin : 10px 0px;
-    height: 120px;
+    /* margin : 10px 0px; */
+    height: 100px;
     width :var(--card-total-width);
     display: grid;
     grid-template-columns: 60% 40%;
@@ -117,7 +117,6 @@ display:flex;
     border-radius: var(--border-radius);
     box-shadow: var(--color-box-shadow);
     padding : 10px 20px;
-    
 }
 
 .container .heading .time_info .top .time{
@@ -136,7 +135,7 @@ display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* padding : 10px 50px; */
+    padding : 10px 50px;
     background-color: var(--color-card-background);
     border-radius: var(--border-radius);
     box-shadow: var(--color-box-shadow);
@@ -258,10 +257,10 @@ display:flex;
         min-width : 0 ;
         width : 100%;
         height : auto;
-        /* width : 250px; */
-        /* height : 150px; */
+        /* width : 250px; 
+        height : 150px; */
         margin : 0;
-        padding : 15px 0px;
+        padding : 10px 0px;
         display :flex;
         flex-direction: column;
         gap : 5px;
