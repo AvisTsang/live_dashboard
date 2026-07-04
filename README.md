@@ -15,6 +15,8 @@ The project is built entirely with:
 
 No frontend frameworks are required.
 
+## Live Demo
+[Live Demo](https://avistsang.github.io/live_dashboard/)
 
 ## Preview
 
