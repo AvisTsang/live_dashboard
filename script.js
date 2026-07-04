@@ -5,7 +5,7 @@ const icon_container = document.querySelector(".icon")
 const api_key = "3de6a34a9eea7ffea7fd499456868914";
 const city_name = "Sheung Shui";
 let route_list = ["273A","270B","978"];
-let oriented = false ;
+
 
 const fare_map = {
     "273A" : 5.1,
@@ -18,19 +18,31 @@ let current_idx = 0 ;
 
 function checkOrientation(){
 
+
+    const rotate_msg = document.getElementById("heading");
+
     if(window.innerHeight > window.innerWidth){
 
         document.querySelector(".container").style.display = "none";
 
-        document.body.insertAdjacentHTML(
-            "beforeend",
-            '<h1 id="rotate">Please rotate device</h1>'
-        );
+        if (!rotate_msg){
+            
+                document.body.insertAdjacentHTML(
+                    "beforeend",
+                    '<h1 id="rotate">Please rotate device</h1>'
+                );
+
+        }
 
     }
     else{
-        oriented = true ;
+
         document.querySelector(".container").style.display = "flex";
+
+        if (rotate_msg){
+            rotate_msg.remove();
+        }
+        
     }
 }
 
@@ -206,9 +218,12 @@ async function refresh_weather(){
 
 }
 
-while(!oriented){
-    checkOrientation();
-}
+checkOrientation();
+window.addEventListener(
+    "orientationchange",
+    checkOrientation
+);
+
 
 refresh_time();
 refresh_bus();
