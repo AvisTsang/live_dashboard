@@ -13,7 +13,6 @@ The project is built entirely with:
 - CSS
 - JavaScript 
 
-No frontend frameworks are required.
 
 ## Live Demo
 [Live Demo](https://avistsang.github.io/live_dashboard/)
