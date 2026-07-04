@@ -1,0 +1,16 @@
+self.addEventListener("install", () => {
+    console.log("SW Installed");
+});
+
+self.addEventListener("fetch", (event) => {
+});
+
+if ("serviceWorker" in navigator){
+
+    navigator.serviceWorker
+        .register("./service-worker.js")
+        .then(() => {
+            console.log("SW Ready");
+        });
+
+}
