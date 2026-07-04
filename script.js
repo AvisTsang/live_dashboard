@@ -5,6 +5,7 @@ const icon_container = document.querySelector(".icon")
 const api_key = "3de6a34a9eea7ffea7fd499456868914";
 const city_name = "Sheung Shui";
 let route_list = ["273A","270B","978"];
+const forecast_text = document.querySelector(".weather_container p")
 
 
 const fare_map = {
@@ -99,6 +100,7 @@ async function refresh_bus(){
         card.classList.add("bus_card");
         bus_container.appendChild(card);
         
+        // const card = document.querySelector("bus_card");
 
         const title = document.createElement("div");
         title.innerHTML = `<div class="bus_title">
@@ -152,6 +154,34 @@ async function refresh_bus(){
 
 }
 
+async function refresh_rain(){
+    const forecast_url = "https://api.open-meteo.com/v1/forecast?latitude=22.495380080903217&longitude=114.12383612449595&hourly=precipitation_probability";
+    const response_fore = await fetch(forecast_url);
+
+    const forecast_data = await response_fore.json();
+    // console.log(forecast_data);
+
+    const prob = forecast_data.hourly.precipitation_probability;
+    // const times = forecast_data.hourly.time;
+    
+    const next_6 = prob.slice(0,6);
+    const max_rain = Math.max(...next_6);
+    // console.log(prob)
+    // console.log(max_rain)
+    
+    
+    if (max_rain >= 80){
+
+        forecast_text.textContent ="🌧️未來6小時大機會下雨";
+    }
+    else if(max_rain >= 60){
+        forecast_text.textContent ="🌧️未來6小時可能有雨";
+    }
+    else{
+        forecast_text.textContent ="☀️未來6小時天氣穩定";
+    }
+}
+
 async function refresh_weather(){
 
 
@@ -160,8 +190,8 @@ async function refresh_weather(){
     const response = await fetch(url);
     
     const data = await response.json();
-    // console.log(data);
     
+
     const humidity = data.main.humidity.toFixed(1);
     let temp = data.main.temp.toFixed(1);
     const icon = data.weather[0].icon;
@@ -171,10 +201,8 @@ async function refresh_weather(){
 
     const icon_url =`https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-    const icon_img = document.createElement("img")
-    icon_container.innerHTML = "";
+    const icon_img = document.querySelector(".icon img")
     icon_img.src = icon_url;
-    icon_container.appendChild(icon_img);
 
     const deg = document.querySelector(".deg");
     deg.innerHTML = "";
@@ -198,9 +226,11 @@ async function refresh_weather(){
 refresh_time();
 refresh_bus();
 refresh_weather();
+refresh_rain();
 setInterval(refresh_bus , 10000);
 setInterval(refresh_time , 1000);
 setInterval(refresh_weather, 300000);
+setInterval(refresh_rain,3600000);
 
 
 if ("serviceWorker" in navigator){

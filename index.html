@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
+
 <body class="">
-    
+
     <h1 id="heading">實時資訊板</h1>
 
     <h1 id="rotate">Please rotate the device</h1>
 
-    <div class="container">
+    <div class="container" >
         <div class="heading">
             <div class="time_info">
                 <div class="top">
@@ -23,23 +25,32 @@
                     <div class="date">Saturday | July 4 2026</div>
                 </div>
             </div>
-            <div class="weather_info">
-                <div class="left">
-                    <div class="icon"></div>
+            <div class="weather_container">
+
+                <div class="weather_info">
+                    <div class="left">
+                        <div class="icon">
+                            <img src="">
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="right_row">
+                            <div class="deg"></div>
+                            <div class="description"></div>
+                        </div>
+                        <div class="hum">濕度 : 75%</div>
+                    </div>
                 </div>
-                <div class="right">
-                    <div class="deg"></div>
-                    <div class="description"></div>
-                    <div class="hum">濕度 : 75%</div>
-                </div>
+                <p>大約XX :XX 有雨</p>
             </div>
         </div>
         <div class="bus_container">
-
+            
         </div>
     </div>
 
 
     <script src="script.js"></script>
 </body>
+
 </html>
