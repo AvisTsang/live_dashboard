@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
+
+:root{
+    --color-background : #EBEBEB;
+    --color-card-background : #F5F5F5;
+    --color-box-shadow : 2px 2px 10px lightgrey;
+    --color-font : #2B2D2F;
+    --color-heading : #005BAC;
+    --card-total-width : 600px;
+    --border-radius : 30px;
+    --color-bus-num : #005BAC;
+    --color-subtext : #8E9AA6;
+    --color-arrival : #EF4444;
+    --color-icon-background : #A9C7DF;
+}
+
+.dark_mode{
+
+    --color-background : #1E2022;
+    --color-card-background : #2A2D31;
+    --color-box-shadow : 2px 2px 5px rgb(15, 15, 15);
+    --color-heading : #4A90E2;
+    --color-font : #FFFFFF;
+    --color-bus-num : #29B6F6;
+    --color-subtext : #8E9AA6;
+    --color-arrival : #E57373;
+    animation : fade_in 0.3s ease;
+}
+
+@keyframes fade_in{
+
+    from {
+        opacity: 0;
+    } 
+    to{
+        opacity : 1;
+    }
+}
+
+*{
+    margin : 0;
+    padding : 0 ;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body{
+    background-color:  var(--color-background);
+    width : 100vw;
+    height : 100vh;
+    color : var(--color-font);
+    transition: background-color 0.3s ease;
+
+}
+
+h1{
+    color : var(--color-heading);
+    text-align: center;
+    font-size: 50px;
+}
+
+
+.container{
+    width : 100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.container .heading {
+    margin : 10px 0px;
+    height: 120px;
+    width :var(--card-total-width);
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap : 10px;
+}
+
+.container .heading .time_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--color-box-shadow);
+    padding : 10px 20px;
+    
+}
+
+.container .heading .time_info .top .time{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.container .heading .time_info .bottom .date{
+    font-size: 20px;
+    font-weight: 500;
+    color : var(--color-subtext);
+}
+
+.container .heading .weather_info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding : 10px 50px; */
+    background-color: var(--color-card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--color-box-shadow);
+    font-size: 20px;
+    gap : 20px;
+}
+
+.container .heading .weather_info .right{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.container .heading .weather_info .right .deg{
+    font-size: 30px;
+}
+.container .heading .weather_info .right .description ,
+.container .heading .weather_info .right .hum{
+    font-size: 15px;
+    color : var(--color-subtext);
+}
+
+
+.container .heading .weather_info .left .icon{
+    height : 80px;
+    width : 80px;
+    background-color: var(--color-icon-background);
+    border-radius: 50%;
+}
+
+.container .heading .weather_info .left .icon img{
+    width : 100%;
+    height : 100%;
+}
+
+
+
+
+.bus_container .bus_card{
+    border-radius: var(--border-radius);
+    width : var(--card-total-width);
+    height : 150px;
+    margin : 10px 0px;
+    background-color: var(--color-card-background);
+    /* background-color: #1E293B; */
+    display: grid;
+    grid-template-columns: 40% 60%;
+    box-shadow: var(--color-box-shadow);
+}
+
+
+
+.bus_container .bus_card .bus_left .bus_title{
+    color : var(--color-bus-num);
+    /* color : #EF4444; */
+    font-size: 50px;
+    flex-basis : 40%;
+    height : 100%;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.bus_container .bus_card .bus_left .bus_title .fee{
+    font-size: 15px;
+}
+
+.bus_container .bus_card .bus_left .bus_title p{
+    font-size: 18px;
+    color : var(--color-subtext)
+}
+
+.bus_container .bus_card .bus_info{
+    display: flex;
+    /* color :  #009688; */
+    color :   var(--color-subtext);
+    align-items: center;
+    justify-content: space-around;
+}
+
+.bus_container .bus_card .bus_info div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.bus_container .bus_card .bus_info .mins_show{
+    font-size: 40px;
+    color :   var(--color-arrival);
+}
+
+
