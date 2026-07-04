@@ -19,7 +19,7 @@ let current_idx = 0 ;
 function checkOrientation(){
 
 
-    const rotate_msg = document.getElementById("heading");
+    const rotate_msg = document.getElementById("rotate");
 
     if(window.innerHeight > window.innerWidth){
 
@@ -220,7 +220,7 @@ async function refresh_weather(){
 
 checkOrientation();
 window.addEventListener(
-    "orientationchange",
+    "resize",
     checkOrientation
 );
 
