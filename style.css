@@ -52,9 +52,9 @@ body{
     height : 100vh;
     color : var(--color-font);
     transition: background-color 0.3s ease;
-    /* overflow: hidden; */
+    overflow: hidden;
     overscroll-behavior: none;
-    touch-action: manipulation;
+    /* touch-action: manipulation; */
     display: flex;
     flex-direction: column;
     justify-content: center;
