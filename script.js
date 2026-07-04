@@ -16,46 +16,21 @@ const fare_map = {
 const MAX_SIZE  = 2 ;
 let current_idx = 0 ;
 
-function checkOrientation(){
 
 
-    const rotate_msg = document.getElementById("rotate");
+const curr = new Date();
 
-    if(window.innerHeight > window.innerWidth){
+// console.log(curr.getHours());
 
-        document.querySelector(".container").style.display = "none";
-
-        if (!rotate_msg){
-            
-                document.body.insertAdjacentHTML(
-                    "beforeend",
-                    '<h1 id="rotate">Please rotate device</h1>'
-                );
-
-        }
-
-    }
-    else{
-
-        document.querySelector(".container").style.display = "flex";
-
-        if (rotate_msg){
-            rotate_msg.remove();
-        }
-        
-    }
+// function refresh_theme(){
+if (curr.getHours() >= 18 || curr.getHours() < 6){
+    document.body.classList.add("dark_mode");
 }
-
-
-
-// const curr = new Date();
-
-// if (curr.getHours() > 18 || curr.getHours() < 6){
-//     document.body.classList.add("dark_mode");
+else{
+    document.body.classList.remove("dark_mode");
+}
 // }
-// else{
-//     document.body.classList.remove("dark_mode");
-// }
+
 
 
 async function refresh_time(){
@@ -218,11 +193,6 @@ async function refresh_weather(){
 
 }
 
-checkOrientation();
-window.addEventListener(
-    "resize",
-    checkOrientation
-);
 
 
 refresh_time();
@@ -231,7 +201,6 @@ refresh_weather();
 setInterval(refresh_bus , 10000);
 setInterval(refresh_time , 1000);
 setInterval(refresh_weather, 300000);
-
 
 
 if ("serviceWorker" in navigator){

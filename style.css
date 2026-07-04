@@ -60,6 +60,28 @@ h1{
     font-size: 50px;
 }
 
+#rotate{
+    display: none;
+}
+
+@media (orientation: portrait) {
+    
+    .container{
+        display: none;
+    }
+
+    #rotate{
+        
+display:flex;
+
+        width:100vw;
+        height:100vh;
+
+        justify-content:center;
+        align-items:center;
+
+    }
+}
 
 .container{
     width : 100%;
