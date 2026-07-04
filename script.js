@@ -5,6 +5,7 @@ const icon_container = document.querySelector(".icon")
 const api_key = "3de6a34a9eea7ffea7fd499456868914";
 const city_name = "Sheung Shui";
 let route_list = ["273A","270B","978"];
+let oriented = false ;
 
 const fare_map = {
     "273A" : 5.1,
@@ -28,6 +29,7 @@ function checkOrientation(){
 
     }
     else{
+        oriented = true ;
         document.querySelector(".container").style.display = "flex";
     }
 }
@@ -204,7 +206,10 @@ async function refresh_weather(){
 
 }
 
-checkOrientation();
+while(!oriented){
+    checkOrientation();
+}
+
 refresh_time();
 refresh_bus();
 refresh_weather();
