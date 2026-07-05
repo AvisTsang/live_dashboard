@@ -32,8 +32,6 @@ else{
 }
 // }
 
-
-
 async function refresh_time(){
 
     const curr = new Date();
@@ -66,14 +64,54 @@ async function refresh_time(){
 
 }
 
-async function refresh_bus(){
 
-    const stop_id = "CF94083CB24CF4E5";         // Cheung Lung Wai
 
-    // const target_route = bus_chose.value;
+function build_bus_card(){
 
     bus_container.innerHTML = "";
 
+    route_list.forEach((route)=>{
+        
+        const card = document.createElement("div");
+        card.classList.add("bus_card");
+        bus_container.appendChild(card);
+        
+        card.dataset.route = route;
+
+        // const card = document.querySelector("bus_card");
+
+        const title = document.createElement("div");
+        title.innerHTML = `<div class="bus_title">
+                            <h3>${route}</h3>
+                            <p class ="dest">載入中...</p>
+                            <p class= "fee">車費 : $${fare_map[route]}</p>
+                            </div>` ;
+        title.classList.add("bus_left");
+        card.appendChild(title);
+        
+
+        const info = document.createElement("div");
+        info.classList.add("bus_info");
+        // info.innerHTML = `
+        //     <div>
+        //         <p class="mins_show eta1">--</p>
+        //         <p>mins</p>
+        //     </div>
+
+        //     <div>
+        //         <p class="mins_show eta2">--</p>
+        //         <p>mins</p>
+        //     </div>
+        // `;  
+        card.appendChild(info);
+
+    })
+}
+
+
+async function refresh_bus(){
+
+    const stop_id = "CF94083CB24CF4E5";         // Cheung Lung Wai
 
     const results = await Promise.all(
         route_list.map(async route=>{
@@ -92,33 +130,25 @@ async function refresh_bus(){
     for (const result of results){
 
         const route = result.route;
+        const card = document.querySelector(`[data-route="${route}"]`);
+        const arrivals = card.querySelectorAll(`.mins_show`);
         const data = result.data;
-
-        // console.log(data);
-
-        const card = document.createElement("div");
-        card.classList.add("bus_card");
-        bus_container.appendChild(card);
+        // const sub_info = card.querySelector(".bus_info");
         
-        // const card = document.querySelector("bus_card");
+        const dest = card.querySelector(".dest");
+        console.log(data);
 
-        const title = document.createElement("div");
-        title.innerHTML = `<div class="bus_title">
-                            <h3>${route}</h3>
-                            <p>往${data.data[0].dest_tc}</p>
-                            <p class= "fee">車費 : $${fare_map[route]}</p>
-                            </div>` ;
-        title.classList.add("bus_left");
-        card.appendChild(title);
+        if (result.data.data.length){
+            dest.textContent = `往${result.data.data[0].dest_tc}`
+        }
+
+        const sub_info = card.querySelector(".bus_info");
         
+        sub_info.innerHTML = "";
 
-        const info = document.createElement("div");
-        info.classList.add("bus_info");
-        card.appendChild(info);
-
-        
         for (let i = 0 ; i < Math.min(2 , data.data.length) ; i++){
 
+            
             const eta = data.data[i].eta;
 
 
@@ -128,7 +158,7 @@ async function refresh_bus(){
                 text.classList.add("mins_show");
                 text.textContent = "暫停服務!";
         
-                info.appendChild(text);
+                sub_info.appendChild(text);
                 
             }
 
@@ -145,7 +175,7 @@ async function refresh_bus(){
                 const text = document.createElement('div');
                 text.innerHTML = `${remain <= 0? '即將到站' : `<p class="mins_show">${remain}<p> mins`}`;
         
-                info.appendChild(text);
+                sub_info.appendChild(text);
             
             }
         }
@@ -215,14 +245,16 @@ async function refresh_weather(){
     const hum = document.querySelector(".hum");
     hum.innerHTML = "";
     hum.innerHTML = `濕度 : ${humidity}%`;
+}
 
+function refresh_theme(){
+    const is_dark = curr.getHours() >=18 ||curr.getHours < 6;
 
-
-
+    document.body.classList.toggle("dark_mode",is_dark);
 }
 
 
-
+build_bus_card();
 refresh_time();
 refresh_bus();
 refresh_weather();
@@ -231,6 +263,7 @@ setInterval(refresh_bus , 10000);
 setInterval(refresh_time , 1000);
 setInterval(refresh_weather, 300000);
 setInterval(refresh_rain,3600000);
+setInterval(refresh_theme,60000);
 
 
 if ("serviceWorker" in navigator){
